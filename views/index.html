@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JavaScript - 2</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="dest/style.css" />
+    <link rel="stylesheet" href="style.scss" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <script src="https://use.fontawesome.com/3b98e9f266.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/monokai.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <h1>JavaScript Algorithms and Data Structures Projects</h1>
+    <h2>by Huascar López</h2>
+
+    <div class="container">
+      <div class="demo-section">
+        <p>
+          Sharing my solutions and thought process. I want to help other in the
+          same way FreeCodecamp has helped me.
+        </p>
+      </div>
+      <div class="tab-wrap">
+        <input type="radio" id="tab1" name="tabGroup1" class="tab" checked />
+        <label for="tab1">Project 1</label>
+        <input type="radio" id="tab2" name="tabGroup1" class="tab" />
+        <label for="tab2">Project 2</label>
+        <input type="radio" id="tab3" name="tabGroup1" class="tab" />
+        <label for="tab3">Project 3</label>
+        <input type="radio" id="tab4" name="tabGroup1" class="tab" />
+        <label for="tab4">Project 4</label>
+        <input type="radio" id="tab5" name="tabGroup1" class="tab" />
+        <label for="tab5">Project 5</label>
+
+        <div class="tab__content">
+          <h3>Palindrome Checker</h3>
+          <h4>Problem Instructions</h4>
+          <p>
+            <br />
+            Return true if the given string is a palindrome. Otherwise, return
+            false. <br /><br />
+
+            A palindrome is a word or sentence that's spelled the same way both
+            forward and backward, ignoring punctuation, case, and spacing.
+            <br /><br />
+
+            <strong>Note</strong><br />
+            You'll need to remove all non-alphanumeric characters (punctuation,
+            spaces and symbols) and turn everything into the same case (lower or
+            upper case) in order to check for palindromes.<br /><br />
+
+            We'll pass strings with varying formats, such as "racecar",
+            "RaceCar", and "race CAR" among others.<br /><br />
+
+            We'll also pass strings with special symbols, such as "2A3*3a2",
+            "2A3 3a2", and "2_A3*3#A2".
+          </p>
+          <h4>Solution Code</h4>
+          <pre><code class="js myCode">
+function palindrome(str) {
+  str = str.toUpperCase();
+  let aux = "";
+            
+  for(var i = 0; i &lt; str.length; i++){
+    if(str.charCodeAt(i) &gt;= 65 && str.charCodeAt(i) &lt;= 90){
+      aux = aux + str[i];
+    }
+    else if(str.charCodeAt(i) &gt;= 48 && str.charCodeAt(i) &lt;= 57){
+      aux = aux + str[i];
+    }
+  }
+                                                               
+  let pal = "";
+  for(var i = aux.length-1; i &gt;= 0; i--){
+    pal = pal + aux[i];
+  }
+            
+  if(pal === aux){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+console.log(palindrome("1 eye for of 1 eye."));
+            </code></pre>
+          <h4>Process</h4>
+          <ol>
+            <li>
+              Convert the string provided to all UPPERCASE (or all lowercase
+              could work).
+              <pre><code class="js myCode">str = str.toUpperCase();</code></pre>
+            </li>
+            <li>
+              Create an aux/auxiliar/temporal variable to storage a new string
+              without numbers7special characters.
+              <pre><code class="js myCode">let aux = "";</code></pre>
+            </li>
+            <li>
+              Eliminate numbers and especial characters. I did it identifying
+              the charcode for letters, this can be improved utilizing a regular
+              expression.
+              <pre><code class="js myCode">for(var i = 0; i &lt; str.length; i++){
+    if(str.charCodeAt(i) &gt;= 65 && str.charCodeAt(i) &lt;= 90){
+      aux = aux + str[i];
+    }
+    else if(str.charCodeAt(i) &gt;= 48 && str.charCodeAt(i) &lt;= 57){
+      aux = aux + str[i];
+    }
+  }</code></pre>
+            </li>
+            <li>
+              Create an aux/auxiliar/temporal variable (pal) to storage the
+              comprasion string.
+              <pre><code class="js myCode">let pal = "";</code></pre>
+            </li>
+            <li>
+              Fill the pal variable using the characters from aux in a reverse
+              order.
+              <pre><code class="js myCode">for(var i = aux.length-1; i &gt;= 0; i--){
+    pal = pal + aux[i];
+  }</code></pre>
+            </li>
+            <li>
+              Compare string, if equal return true, else false.
+              <pre><code class="js myCode">if(pal === aux){
+    return true;
+  }
+else{
+    return false;
+  }</code></pre>
+            </li>
+          </ol>
+        </div>
+        <div class="tab__content">
+          <h3>Roman Numeral Converter</h3>
+          <p>
+            <br />
+            Generar una antología de cuentos, poemas y ensayos literarios.<br />
+            Replicar la actividad de “Libro perdido”.<br />
+            Generar un recurso para futuras cajas de la amistad.<br />
+            Recolectar donativos para institución que trabaje con niños.<br />
+            Promover el arte y la literatura.
+          </p>
+        </div>
+        <div class="tab__content">
+          <h3>Caesars Cipher</h3>
+          <p>
+            <br />
+            Generar una antología de cuentos, poemas y ensayos literarios.<br />
+            Replicar la actividad de “Libro perdido”.<br />
+            Generar un recurso para futuras cajas de la amistad.<br />
+            Recolectar donativos para institución que trabaje con niños.<br />
+            Promover el arte y la literatura.
+          </p>
+        </div>
+        <div class="tab__content">
+          <h3>Telephone Number Validator</h3>
+          <p>
+            <br />
+            Generar una antología de cuentos, poemas y ensayos literarios.<br />
+            Replicar la actividad de “Libro perdido”.<br />
+            Generar un recurso para futuras cajas de la amistad.<br />
+            Recolectar donativos para institución que trabaje con niños.<br />
+            Promover el arte y la literatura.
+          </p>
+        </div>
+        <div class="tab__content">
+          <h3>Cash Register</h3>
+          <p>
+            <br />
+            Generar una antología de cuentos, poemas y ensayos literarios.<br />
+            Replicar la actividad de “Libro perdido”.<br />
+            Generar un recurso para futuras cajas de la amistad.<br />
+            Recolectar donativos para institución que trabaje con niños.<br />
+            Promover el arte y la literatura.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <section>
+        <a id="footer" href="https://github.com/HuascarLopez">
+          Made with <i class="fa fa-heart" style="color:red"></i> by Huascar
+          Arturo
+        </a>
+      </section>
+    </footer>
+  </body>
+</html>
