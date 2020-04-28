@@ -195,7 +195,8 @@ if(arabic[i] &gt; num){
 }</code></pre>
             </li>
             <li>
-              Add value of the Roman value to the auxiliar string. Substract Roman value til the input enters a new bracket and repeat process.
+              Add value of the Roman value to the auxiliar string. Substract
+              Roman value til the input enters a new bracket and repeat process.
               <pre><code class="js myCode">while(num &gt;= arabic[index]){
   str = str+roman[index];
   num = num - arabic[index];
@@ -209,14 +210,82 @@ if(arabic[i] &gt; num){
         </div>
         <div class="tab__content">
           <h3>Caesars Cipher</h3>
+          <h4>Problem Instructions</h4>
           <p>
-            <br />
-            Generar una antología de cuentos, poemas y ensayos literarios.<br />
-            Replicar la actividad de “Libro perdido”.<br />
-            Generar un recurso para futuras cajas de la amistad.<br />
-            Recolectar donativos para institución que trabaje con niños.<br />
-            Promover el arte y la literatura.
+            One of the simplest and most widely known ciphers is a Caesar
+            cipher, also known as a shift cipher. In a shift cipher the meanings
+            of the letters are shifted by some set amount.<br /><br />
+
+            A common modern use is the ROT13 cipher, where the values of the
+            letters are shifted by 13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so
+            on.<br /><br />
+
+            Write a function which takes a ROT13 encoded string as input and
+            returns a decoded string.<br /><br />
+
+            All letters will be uppercase. Do not transform any non-alphabetic
+            character (i.e. spaces, punctuation), but do pass them on.
           </p>
+          <h4>Solution Code</h4>
+          <pre><code class="js myCode">
+function rot13(str) { // LBH QVQ VG!
+  let cipher = "";
+  let bin = 0;
+  for(let i = 0; i &gt; str.length; i++){
+    bin = str.charCodeAt(i);
+    if(bin == 32 || bin == 33 || bin == 46 || bin == 63){ //Space ! . ?
+    }
+    else if(bin+13 &gt; 90){
+        bin = 65 + ((bin+12)-90)
+    }
+    else{
+        bin = bin + 13
+    }
+    cipher = cipher+String.fromCharCode(bin);
+  }
+  return cipher;
+}
+
+rot13("SERR PBQR PNZC");
+            </code></pre>
+          <h4>Process</h4>
+          <ol>
+            <li>
+              Initialize auxiliar variables.
+              <pre><code class="js myCode">let cipher = "";
+let bin = 0;</code></pre>
+            </li>
+            <li>
+              Check every charcode in the input string.
+              <pre><code class="js myCode">bin = str.charCodeAt(i);</code></pre>
+            </li>
+            <li>
+              Do not consider punctuation.
+              <pre><code class="js myCode">if(bin == 32 || bin == 33 || bin == 46 || bin == 63){ //Space ! . ?
+}</code></pre>
+            </li>
+            <li>
+              If the charcode plus the 13 steps of the cipher is greater tha 90
+              (Z) start from 65 (a).
+              <pre><code class="js myCode">else if(bin+13 &gt; 90){
+  bin = 65 + ((bin + 12)-90)
+}</code></pre>
+            </li>
+            <li>
+              Apply the 13 steps to the rest of the characters.
+              <pre><code class="js myCode">else{
+  bin = bin + 13
+}</code></pre>
+            </li>
+            <li>
+              Add the new character from its charcode to the auxiliar string.
+              <pre><code class="js myCode">cipher = cipher + String.fromCharCode(bin);</code></pre>
+            </li>
+            <li>
+              Return solution.
+              <pre><code class="js myCode">return cipher;</code></pre>
+            </li>
+          </ol>
         </div>
         <div class="tab__content">
           <h3>Telephone Number Validator</h3>
