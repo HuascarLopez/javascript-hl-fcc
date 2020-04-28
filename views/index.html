@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JavaScript - 2</title>
+    <title>JavaScript - FCC</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +49,6 @@
           <h3>Palindrome Checker</h3>
           <h4>Problem Instructions</h4>
           <p>
-            <br />
             Return true if the given string is a palindrome. Otherwise, return
             false. <br /><br />
 
@@ -148,14 +147,65 @@ else{
         </div>
         <div class="tab__content">
           <h3>Roman Numeral Converter</h3>
+          <h4>Problem Instructions</h4>
           <p>
-            <br />
-            Generar una antología de cuentos, poemas y ensayos literarios.<br />
-            Replicar la actividad de “Libro perdido”.<br />
-            Generar un recurso para futuras cajas de la amistad.<br />
-            Recolectar donativos para institución que trabaje con niños.<br />
-            Promover el arte y la literatura.
+            Convert the given number into a roman numeral.<br /><br />
+            All roman numerals answers should be provided in upper-case.
           </p>
+          <h4>Solution Code</h4>
+          <pre><code class="js myCode">
+function convertToRoman(num) {
+    let arabic = [1,4,5,9,10,40,50,90,100,400,500,900,1000,5000];
+    let roman = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M","5M"];
+    let index;
+    let str = "";
+    
+    while(num &gt; 0){
+        for(let i = 0; i &lt; arabic.length; i++){
+            if(arabic[i] &gt; num){
+                index = i-1;
+                break;
+            }
+    }
+        while(num &gt;= arabic[index]){
+            str = str + roman[index];
+            num = num - arabic[index];
+        }
+    }
+    return str;
+}
+
+console.log(convertToRoman(3999));
+    </code></pre>
+          <h4>Process</h4>
+          <ol>
+            <li>
+              Declare dictionaries variables and auxiliar variables.
+              <pre><code class="js myCode">let arabic = [1,4,5,9,10,40,50,90,100,400,500,900,1000,5000];
+let roman = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M","5M"];
+let index;
+let str = "";</code></pre>
+            </li>
+            <li>
+              Figure out in what bracket of the Roman Numbers is the input.
+              <pre><code class="js myCode">for(let i = 0; i &lt; arabic.length; i++){
+if(arabic[i] &gt; num){
+  index = i-1;
+  break;
+}</code></pre>
+            </li>
+            <li>
+              Add value of the Roman value to the auxiliar string. Substract Roman value til the input enters a new bracket and repeat process.
+              <pre><code class="js myCode">while(num &gt;= arabic[index]){
+  str = str+roman[index];
+  num = num - arabic[index];
+}</code></pre>
+            </li>
+            <li>
+              Return solution
+              <pre><code class="js myCode">return str;</code></pre>
+            </li>
+          </ol>
         </div>
         <div class="tab__content">
           <h3>Caesars Cipher</h3>
