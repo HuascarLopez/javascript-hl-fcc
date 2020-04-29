@@ -24,7 +24,7 @@
   </head>
   <body>
     <h1>JavaScript Algorithms and Data Structures Projects</h1>
-    <h2>Second FCC Certificate</h2>
+    <h2><a href="https://www.freecodecamp.org/">Second FreeCodeCamp Certificate</a></h2>
 
     <div class="container">
       <div class="demo-section">
@@ -73,7 +73,7 @@ function palindrome(str) {
   str = str.toUpperCase();
   let aux = "";
             
-  for(var i = 0; i &lt; str.length; i++){
+  for(let i = 0; i &lt; str.length; i++){
     if(str.charCodeAt(i) &gt;= 65 && str.charCodeAt(i) &lt;= 90){
       aux = aux + str[i];
     }
@@ -83,7 +83,7 @@ function palindrome(str) {
   }
                                                                
   let pal = "";
-  for(var i = aux.length-1; i &gt;= 0; i--){
+  for(let i = aux.length-1; i &gt;= 0; i--){
     pal = pal + aux[i];
   }
             
@@ -113,7 +113,7 @@ console.log(palindrome("1 eye for of 1 eye."));
               Eliminate numbers and especial characters. I did it identifying
               the charcode for letters, this can be improved utilizing a regular
               expression.
-              <pre><code class="js myCode">for(var i = 0; i &lt; str.length; i++){
+              <pre><code class="js myCode">for(let i = 0; i &lt; str.length; i++){
     if(str.charCodeAt(i) &gt;= 65 && str.charCodeAt(i) &lt;= 90){
       aux = aux + str[i];
     }
@@ -130,7 +130,7 @@ console.log(palindrome("1 eye for of 1 eye."));
             <li>
               Fill the pal variable using the characters from aux in a reverse
               order.
-              <pre><code class="js myCode">for(var i = aux.length-1; i &gt;= 0; i--){
+              <pre><code class="js myCode">for(let i = aux.length-1; i &gt;= 0; i--){
     pal = pal + aux[i];
   }</code></pre>
             </li>
@@ -290,24 +290,169 @@ let bin = 0;</code></pre>
         <div class="tab__content">
           <h3>Telephone Number Validator</h3>
           <p>
-            <br />
-            Generar una antología de cuentos, poemas y ensayos literarios.<br />
-            Replicar la actividad de “Libro perdido”.<br />
-            Generar un recurso para futuras cajas de la amistad.<br />
-            Recolectar donativos para institución que trabaje con niños.<br />
-            Promover el arte y la literatura.
+            Return <code>true</code> if the passed string looks like a valid US
+            phone number.<br /><br />
+
+            The user may fill out the form field any way they choose as long as
+            it has the format of a valid US number. The following are examples
+            of valid formats for US numbers (refer to the tests below for other
+            variants):<br />
           </p>
+
+          <pre><code
+              >555-555-5555
+(555)555-5555 
+(555) 555-5555 
+555 555 5555 
+5555555555
+1 555 555 5555</code
+            ></pre>
+          <p>
+            For this challenge you will be presented with a string such as
+            <code>800-692-7753</code> or <code>8oo-six427676;laskdjf</code>.
+            Your job is to validate or reject the US phone number based on any
+            combination of the formats provided above. The area code is
+            required. If the country code is provided, you must confirm that the
+            country code is <code>1</code>. Return <code>true</code> if the
+            string is a valid US phone number; otherwise return
+            <code>false</code>.
+          </p>
+          <h4>Solution Code</h4>
+          <pre><code class="js myCode">
+function telephoneCheck(str) {
+  const regex = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+  return regex.test(str);
+}
+
+telephoneCheck("555-555-5555");
+            </code></pre>
+          <h4>Process</h4>
+          <ol>
+            <li>
+              You need to check the beginning of the string. Allows for “1” or
+              "1 " (with a space) if there is one.
+              <pre><code class="js myCode">const regexBeginning = /^(1\s?)?/; </code></pre>
+            </li>
+            <li>
+              You need to check the first three digits of the string with or
+              without parenthesis.
+              <pre><code class="js myCode">const regexFirstDigits = /(\(\d{3}\)|\d{3})/;</code></pre>
+            </li>
+            <li>
+              Check if there is spaces or dahses between the digits in the
+              string.
+              <pre><code class="js myCode">const regexSpaces = /[\s\-]?/;</code></pre>
+            </li>
+            <li>
+              You need to check the last seven digits of the string with or
+              without parenthesis.
+              <pre><code class="js myCode">const regexLastDigits = /\d{3}[\s\-]?\d{4}$/;</code></pre>
+            </li>
+            <li>
+              Apply a regex test to verify the validity of the string.
+              <pre><code class="js myCode">return regex.test(str)</code></pre>
+            </li>
+          </ol>
         </div>
         <div class="tab__content">
           <h3>Cash Register</h3>
           <p>
-            <br />
-            Generar una antología de cuentos, poemas y ensayos literarios.<br />
-            Replicar la actividad de “Libro perdido”.<br />
-            Generar un recurso para futuras cajas de la amistad.<br />
-            Recolectar donativos para institución que trabaje con niños.<br />
-            Promover el arte y la literatura.
+            Design a cash register drawer function
+            <code>checkCashRegister()</code> that accepts purchase price as the
+            first argument <code>(price)</code>, payment as the second argument
+            <code>(cash)</code>, and cash-in-drawer <code>(cid)</code> as the
+            third argument. <br /><br />
+            <code>cid</code> is a 2D array listing available currency.
+            <br /><br />
+            The <code>checkCashRegister()</code> function should always return
+            an object with a <code>status</code> key and a
+            <code>change</code> key.<br /><br />
+            Return <code>{status: "INSUFFICIENT_FUNDS", change: []}</code> if
+            cash-in-drawer is less than the change due, or if you cannot return
+            the exact change.<br /><br />
+            Return <code>{status: "CLOSED", change: [...]}</code> with
+            cash-in-drawer as the value for the key change if it is equal to the
+            <code>change</code> due.<br /><br />
+            Otherwise, <code>return {status: "OPEN", change: [...]}</code>, with
+            the change due in coins and bills, sorted in highest to lowest
+            order, as the value of the <code>change</code> key.<br /><br />
+            See below for an example of a cash-in-drawer array:<br />
           </p>
+          <pre><code class="js">[
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]</code></pre>
+          <h4>Solution Code</h4>
+          <pre><code class="js myCode">
+function compareSecondColumn(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] &gt; b[1]) ? -1 : 1;
+    }
+}
+
+function checkCashRegister(price, cash, cid) {
+  let change = cash-price;
+  let currencyCode = [["PENNY", 0.01], ["NICKEL", 0.05], ["DIME", 0.1], ["QUARTER", 0.25], ["ONE", 1], ["FIVE", 5], ["TEN", 10], ["TWENTY", 20], ["ONE HUNDRED", 100]];
+  let currencyChange = [["PENNY", 0], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]];
+  let aux = change;
+  
+  const VALUE = 1
+  
+  for(let i = currencyCode.length-1; i &gt;= 0; i--){
+    let calculation = Math.floor((aux - cid[i][1])*100)/100;
+    let a = Math.floor(aux/currencyCode[i][1]);
+    let b = Math.floor(cid[i][VALUE]/currencyCode[i][VALUE]);
+    
+    if(aux &gt; currencyCode[i][VALUE]){
+      if(a &lt; b){
+        aux = Math.round((aux-currencyCode[i][VALUE] * a)*100)/100;
+        currencyChange[i][VALUE] = currencyChange[i][VALUE]+currencyCode[i][VALUE]*a;
+        cid[i][1] = cid[i][VALUE]-currencyCode[i][VALUE]*a
+      }
+      else{
+        aux = Math.round((aux-currencyCode[i][VALUE] * b)*100)/100;
+        currencyChange[i][VALUE] = currencyChange[i][VALUE]+currencyCode[i][VALUE] * b;
+        cid[i][VALUE] = cid[i][VALUE]-currencyCode[i][VALUE]*b;
+      }
+    }
+  }
+
+  let counter = 0;
+  
+  for(let i = 0; i &gt; cid.length; i++){
+    counter = counter + cid[i][VALUE];
+  }
+
+  if(aux &gt; 0){
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  }
+  else if(aux == 0 && counter == 0){
+    return {status: "CLOSED", change: currencyChange};
+  }
+  else{
+    currencyChange.sort(compareSecondColumn);
+    let change = [];
+    for(let i = 0; i &lt; currencyChange.length; i++){
+      if(currencyChange[i][VALUE] != 0){
+        change.push(currencyChange[i]);
+      }
+    }
+    return {status: "OPEN", change: change};
+  }
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
+            </code></pre>
         </div>
       </div>
     </div>
